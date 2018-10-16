@@ -58,11 +58,11 @@ class Player
 end
 
 class Game
-  def initialize
+  def initialize(nb_part=0)
 #presentation du jeu et config des players
     puts "Bienvenue dans le jeu du morpion" .green
-    if @@nb_part > 0
-      puts "tu en est a la #{@@nb_part} partie" .green
+    if nb_part > 0
+      puts "tu en est a la #{@@nb_part + 1} partie" .green
     end
     print "\nPlayer_1, entrez votre prénom > " .cyan
     player_1 = gets.chomp.cyan
@@ -148,5 +148,4 @@ class Game
   end
 end
 
-@@nb_part = 0
-Game.new
+Game.new(0)
