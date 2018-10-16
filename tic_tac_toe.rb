@@ -22,11 +22,11 @@ class Board
 
   def print_board
     print " #{@case_1.case_value} #{"|".green} #{@case_2.case_value} #{"|".green} #{@case_3.case_value}"
-    puts "     1 - 2 - 3 \n---+---+---".green
+    puts "        1 | 2 | 3 \n---+---+---      ---+---+---".green
     print " #{@case_4.case_value} #{"|".green} #{@case_5.case_value} #{"|".green} #{@case_6.case_value}"
-    puts "     4 - 5 - 6 \n---+---+---".green
+    puts "        4 | 5 | 6 \n---+---+---      ---+---+---".green
     print " #{@case_7.case_value} #{"|".green} #{@case_8.case_value} #{"|".green} #{@case_9.case_value}"
-    puts "     7 - 8 - 9".green
+    puts "        7 | 8 | 9".green
   end
 end
 
@@ -60,9 +60,11 @@ end
 class Game
   def initialize
 #presentation du jeu et config des players
-    puts "Bienvenue dans le jeu du morpion\n\n" .green
-
-    print "Player_1, entrez votre prénom > " .cyan
+    puts "Bienvenue dans le jeu du morpion" .green
+    if @@nb_part > 0
+      puts "tu en est a la #{@@nb_part} partie" .green
+    end
+    print "\nPlayer_1, entrez votre prénom > " .cyan
     player_1 = gets.chomp.cyan
     @player_1 = Player.new(player_1, "O".cyan)
     print "Player_2, entrez votre prénom > " .yellow
@@ -135,9 +137,10 @@ class Game
   end
 
   def play_again
-    puts "Would you like to play an other party? (Y = oui, n = non)" .green
+    puts "Would you like to play an other party? (Y/y = oui, N/n = non)" .green
     input = gets.chomp
     if input == "Y" || input == "y"
+      @@nb_part += 1
       Game.new
     else
       exit
@@ -145,4 +148,5 @@ class Game
   end
 end
 
+@@nb_part = 0
 Game.new
